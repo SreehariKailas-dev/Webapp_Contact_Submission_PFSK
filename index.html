@@ -15,6 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1rem; /* Prevent edges from cutting on small screens */
   }
   .login-container {
     background: #fff;
@@ -28,15 +29,17 @@
     text-align: center;
     margin-bottom: 1.5rem;
     color: #5c2e2e;
+    font-size: 1.6rem;
   }
   label {
     display: block;
     margin-bottom: 0.3rem;
     font-weight: 500;
+    font-size: 0.95rem;
   }
   input {
     width: 100%;
-    padding: 0.8rem;
+    padding: 0.9rem;
     margin-bottom: 1rem;
     border-radius: 10px;
     border: 1px solid #ccc;
@@ -50,7 +53,7 @@
   }
   button {
     width: 100%;
-    padding: 0.8rem;
+    padding: 0.9rem;
     background: #8b4513;
     color: #fff;
     border: none;
@@ -68,11 +71,31 @@
     text-align: center;
     margin-bottom: 1rem;
     display: none;
+    font-size: 0.9rem;
   }
 
+  /* 📱 Mobile Optimization */
   @media (max-width: 480px) {
-    .login-container { padding: 1.5rem; border-radius: 12px; }
-    input, button { font-size: 1rem; padding: 0.7rem; }
+    body {
+      padding: 0.5rem;
+      align-items: flex-start;
+    }
+    .login-container {
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-top: 15vh; /* moves it down a bit */
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    input, button {
+      font-size: 1rem;
+      padding: 0.7rem;
+    }
+    label {
+      font-size: 0.85rem;
+    }
   }
 </style>
 </head>
@@ -98,7 +121,6 @@
     const password = document.getElementById("password").value;
 
     if(username === "admin" && password === "mypassword") {
-      // Mark login as valid
       localStorage.setItem("adminLoggedIn", "true");
       window.location.href = "contact-submission.html";
     } else {
