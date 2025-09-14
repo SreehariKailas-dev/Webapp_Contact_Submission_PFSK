@@ -63,22 +63,44 @@
     background: #f9f9f9;
   }
 
-  /* Mobile friendly table */
+  /* 📱 Mobile friendly table */
   @media (max-width: 768px) {
     table, thead, tbody, th, td, tr { display: block; }
-    th { position: sticky; top: 0; }
+    thead { display: none; } /* Hide header on mobile */
+    tr {
+      margin-bottom: 1rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 0.5rem;
+    }
     td {
-      padding-left: 50%;
+      padding: 0.7rem;
+      border: none;
       text-align: right;
       position: relative;
+      font-size: 0.95rem;
     }
     td::before {
       content: attr(data-label);
       position: absolute;
-      left: 10px;
-      width: 45%;
+      left: 0.7rem;
       font-weight: bold;
       text-align: left;
+      color: #5c2e2e;
+    }
+  }
+
+  /* 📱 Smaller screens (phones under 480px) */
+  @media (max-width: 480px) {
+    h1 { font-size: 1.5rem; }
+    .logout-btn {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+    }
+    td {
+      font-size: 0.85rem;
+      padding: 0.6rem;
     }
   }
 </style>
@@ -125,7 +147,7 @@
   // --- Fetch Messages ---
   async function fetchMessages() {
     try {
-      const response = await fetch("http://localhost:5000/api/messages"); // replace with your backend endpoint
+      const response = await fetch("https://server-contact-submission-pfsk.onrender.com/api/messages"); // replace with your backend endpoint
       const messages = await response.json();
 
       const tbody = document.getElementById('messagesTable').querySelector('tbody');
